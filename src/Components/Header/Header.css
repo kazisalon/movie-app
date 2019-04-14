@@ -1,0 +1,68 @@
+.header {
+  height: 100px;
+  width: 100%;
+  background: #1e2028;
+}
+
+.header-logo {
+  animation: App-logo-spin infinite 10s linear;
+  height: 40px;
+  pointer-events: none;
+}
+
+.search-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-top: 15px;
+  width: 280px;
+  z-index: 6;
+}
+
+.search-form {
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  outline: none;
+  transition: all 0.2s ease 0s;
+  padding: 0 10px;
+  height: 32px;
+  border: 1px solid #424754;
+  background: 0 0;
+  color: #8e95a5;
+  line-height: 32px;
+  border-radius: 3px;
+  cursor: text;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+}
+
+.search-button {
+  position: absolute;
+  top: 2px;
+  right: -15px;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: 0 0;
+  color: #646b7f;
+  font-size: 1.2rem;
+  padding: 0;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,17 @@
+.movie-wrapper{
+  display:block;
+  width: 250px;
+}
+
+.movie-poster{
+  width: 100px;
+}
+
+.movie-title{
+  font-size: 20px;
+  color: white;
+}
+
+.movie-description{
+  font-size: 16px;
+}

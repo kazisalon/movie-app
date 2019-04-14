@@ -1,0 +1,12 @@
+.main-wrapper{
+  height: 1000px;
+  background: #23252b;
+  color: white;
+}
+
+.movies-list{
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  height: 1000px;
+}
