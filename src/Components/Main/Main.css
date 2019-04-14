@@ -1,12 +1,16 @@
 .main-wrapper{
-  height: 1000px;
+  height: 100%;
   background: #23252b;
   color: white;
+  padding-top: 30px;
 }
 
 .movies-list{
   display: flex;
-  width: 80%;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin: 0 auto;
-  height: 1000px;
+  height: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
 }

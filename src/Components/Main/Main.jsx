@@ -32,9 +32,7 @@ class Main extends Component {
     const films = items.map((film) => {
       // properties like completed, important
       return (
-        <li key={film.id} className="list-item">
-          <Movie title={film.title} />
-        </li>
+        <Movie key={film.id} title={film.title} overview={film.overview} poster={film.poster_path} rank={film.vote_average} />
       );
     });
     return (
@@ -48,7 +46,7 @@ class Main extends Component {
 const mapStateToProps = state => ({
   items: state.movies.items,
   loading: state.movies.loading,
-  error: state.movies.error
+  error: state.movies.error,
 });
 
 export default connect(mapStateToProps)(Main);

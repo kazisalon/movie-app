@@ -1,15 +1,95 @@
 .movie-wrapper{
-  display:block;
-  width: 250px;
+  display: flex;
+  list-style-type: none;
+  width: 47%;
+  height: 200px;
+  padding: 15px;
 }
 
 .movie-poster{
-  width: 100px;
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  height: 200px;
+  min-width: 150px;
+  opacity: 0.9;
 }
+
+.movie-wrapper:hover {
+  background:#30333f;
+  border-radius: 7px;
+}
+.movie-wrapper:hover > .movie-poster{
+  opacity: 1;
+}
+.movie-wrapper:hover > .movie-info{
+  opacity: 1;
+}
+
+
+.movie-info{
+  margin-left: 15px;
+  overflow-y: auto;
+  height: 200px;
+  opacity: 0.92;
+}
+
+.movie-info::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #23252b;
+}
+
+.movie-info::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #23252b;
+}
+
+.movie-info::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #1e2028;
+}
+
 
 .movie-title{
   font-size: 20px;
   color: white;
+  word-wrap: break-word;
+  margin-bottom: 12px;
+  display: inline-block;
+  margin-right: 14px;
+}
+
+.movie-rank >span {
+  color: #fbb829;
+  padding-right: 10px;
+}
+
+.movie-rank{
+  position: relative;
+  display: inline-block;
+  margin-bottom: 13px;
+}
+.movie-rank-number{
+  color: #f4f4f4 !important;
+  padding-left: 11px;
+}
+.fa-star{
+  position: absolute;
+  top: 4px;
+  left: 47px;
+  font-size: 10px;
+  display: inline-block !important;
+  color: #fbb829;
+}
+
+.movie-overview {
+  display: inline-block;
 }
 
 .movie-description{
