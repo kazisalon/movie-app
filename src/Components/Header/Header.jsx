@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import logo from "../../logo.svg";
 import "./Header.css";
-import { fetchMovies } from "../../Store/actions/moviesActions";
+import { fetchMovieByInput } from "../../Store/actions/moviesActions";
 
 const Header = props => (
   <div className="header">
@@ -28,7 +28,7 @@ const Header = props => (
 );
 
 const mapDispatchToProps = dispatch => ({
-  sendSearchQuery: inputData => dispatch(fetchMovies(inputData))
+  sendSearchQuery: inputData => dispatch(fetchMovieByInput(inputData))
 });
 
 export default connect(

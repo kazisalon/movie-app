@@ -1,6 +1,7 @@
 export const FETCH_MOVIES_BEGIN = "FETCH_MOVIES_BEGIN";
 export const FETCH_MOVIES_SUCCESS = "FETCH_MOVIES_SUCCESS";
 export const FETCH_MOVIES_FAILURE = "FETCH_MOVIES_FAILURE";
+export const FETCH_MOVIES_ADD_INPUT_VALUE = "FETCH_MOVIES_ADD_INPUT_VALUE";
 
 export const fetchMoviesBegin = () => ({
   type: FETCH_MOVIES_BEGIN
@@ -16,12 +17,27 @@ export const fetchMoviesFailure = error => ({
   payload: { error }
 });
 
+export const fetchMovieAddInputValue = inputValue => ({
+  type: FETCH_MOVIES_ADD_INPUT_VALUE,
+  payload: { inputValue }
+})
+
 function handleErrors(response) {
   if (!response.ok) {
     throw Error(response.statusText);
   }
   return response;
 }
+
+
+export function fetchMovieByInput(inputValue)  {
+  return (dispatch, getState) => {
+    dispatch(fetchMovieAddInputValue(inputValue));
+    const value = getState().movies.inputValue;
+    dispatch(fetchMovies(value));
+  }
+}
+
 
 export function fetchMovies(inputValue) {
   return async dispatch => {

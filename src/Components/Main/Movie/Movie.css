@@ -21,11 +21,14 @@
 .movie-wrapper:hover {
   background: #30333f;
   border-radius: 7px;
+  transition: 200ms ease-in-out;
 }
 .movie-wrapper:hover > .movie-poster {
+  transition: 200ms ease-in-out;
   opacity: 0.95;
 }
 .movie-wrapper:hover > .movie-info {
+  transition: 200ms ease-in-out;
   opacity: 0.95;
 }
 
