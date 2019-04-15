@@ -20,7 +20,6 @@ export default function moviesReducer(state = initialState, action) {
       };
 
     case FETCH_MOVIES_SUCCESS:
-      console.log(`succes ${action.payload.movies}`);
       return {
         ...state,
         items: action.payload.movies,

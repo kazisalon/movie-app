@@ -1,11 +1,12 @@
-.main-wrapper{
+.main-wrapper {
   height: 100%;
   background: #23252b;
   color: white;
   padding-top: 30px;
+  min-height: 1000px;
 }
 
-.movies-list{
+.movies-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -13,4 +14,10 @@
   height: 100%;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.loading {
+  text-align: center;
+  font-size: 30px;
+  color: #646b7f;
 }
