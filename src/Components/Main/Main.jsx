@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMovies } from '../../Store/actions/moviesActions';
+import { fetchMovies } from '../../Store/actions/fetchingActions';
 import Movie from './Movie/Movie';
 import './Main.css';
 
 class Main extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchMovies());
+    this.props.downloadMovies();
   }
 
   render() {
@@ -35,6 +35,7 @@ class Main extends Component {
     const films = items.map(film => (
       <Movie
         key={film.id}
+        id={film.id}
         title={film.title}
         overview={film.overview}
         poster={film.poster_path}
@@ -50,9 +51,18 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({
-  items: state.movies.items,
-  loading: state.movies.loading,
-  error: state.movies.error,
+  items: state.fetching.items,
+  loading: state.fetching.loading,
+  error: state.fetching.error,
 });
 
-export default connect(mapStateToProps)(Main);
+const mapDispatchToProps = dispatch => ({
+  downloadMovies: (input, page) => {
+    dispatch(fetchMovies(input, page));
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Main);

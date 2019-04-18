@@ -2,15 +2,12 @@ import {
   FETCH_MOVIES_BEGIN,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
-  FETCH_MOVIES_ADD_INPUT_VALUE,
-} from '../actions/moviesActions';
+} from '../actions/fetchingActions';
 
 const initialState = {
   items: [],
   loading: false,
   error: null,
-  inputValue: '',
-  IMDbData: [],
 };
 
 export default function moviesReducer(state = initialState, action) {
@@ -35,12 +32,6 @@ export default function moviesReducer(state = initialState, action) {
         loading: false,
         error: action.payload.error,
         items: action.payload.movies,
-      };
-
-    case FETCH_MOVIES_ADD_INPUT_VALUE:
-      return {
-        ...state,
-        inputValue: action.payload.inputValue,
       };
 
     default:

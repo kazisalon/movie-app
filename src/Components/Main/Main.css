@@ -21,3 +21,8 @@
   font-size: 30px;
   color: #646b7f;
 }
+
+a {
+  color: #f4f4f4;
+  text-decoration: none; /* no underline */
+}

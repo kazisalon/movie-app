@@ -1,7 +1,7 @@
 export const FETCH_MOVIES_BEGIN = 'FETCH_MOVIES_BEGIN';
 export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
 export const FETCH_MOVIES_FAILURE = 'FETCH_MOVIES_FAILURE';
-export const FETCH_MOVIES_ADD_INPUT_VALUE = 'FETCH_MOVIES_ADD_INPUT_VALUE';
+export const FETCH_PAGE_COUNT = 'FETCH_PAGE_COUNT';
 
 export const fetchMoviesBegin = () => ({
   type: FETCH_MOVIES_BEGIN,
@@ -17,9 +17,9 @@ export const fetchMoviesFailure = error => ({
   payload: { error },
 });
 
-export const fetchMovieAddInputValue = inputValue => ({
-  type: FETCH_MOVIES_ADD_INPUT_VALUE,
-  payload: { inputValue },
+export const fetchPageCount = count => ({
+  type: FETCH_PAGE_COUNT,
+  payload: count,
 });
 
 function handleErrors(response) {
@@ -29,31 +29,30 @@ function handleErrors(response) {
   return response;
 }
 
-export function fetchMovies(inputValue) {
+const MOVIEDB_API_KEY = '5874acfd11651a28c55771624f7021f4';
+const MOVIEDB_BASE_URL = 'https://api.themoviedb.org/3';
+
+export function fetchMovies(inputValue, page = 1) {
   return async (dispatch) => {
     dispatch(fetchMoviesBegin());
     let response;
     if (inputValue) {
       response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=5874acfd11651a28c55771624f7021f4&query=${inputValue}`,
+        `${MOVIEDB_BASE_URL}/search/movie?api_key=${MOVIEDB_API_KEY}&query=${inputValue}&page=${page}`,
       );
     } else {
       response = await fetch(
-        'https://api.themoviedb.org/3/movie/now_playing?api_key=5874acfd11651a28c55771624f7021f4&page=1',
+        `${MOVIEDB_BASE_URL}/movie/now_playing?api_key=${MOVIEDB_API_KEY}&page=${page}`,
       );
     }
     const res = handleErrors(response);
     const json = await res.json();
+    const results = json.results;
     console.log(json);
-    dispatch(fetchMoviesSuccess(json.results));
+    console.log(json.results);
+    const pageCount = json.total_pages;
+    dispatch(fetchPageCount(pageCount));
+    dispatch(fetchMoviesSuccess(results));
     return json.results;
-  };
-}
-
-export function fetchMovieByInput(inputValue) {
-  return (dispatch, getState) => {
-    dispatch(fetchMovieAddInputValue(inputValue));
-    const value = getState().movies.inputValue;
-    dispatch(fetchMovies(value));
   };
 }

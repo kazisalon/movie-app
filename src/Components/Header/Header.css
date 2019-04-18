@@ -39,7 +39,25 @@
 
 .header-logo-wrapper {
   display: flex;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  outline: none;
+  cursor: pointer;
 }
+
+/* Remove excess padding and border in Firefox 4+ */
+header-logo-wrapper::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
 @media screen and (max-width: 500px) {
   .header-logo-wrapper {
     margin-left: 10%;

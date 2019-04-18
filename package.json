@@ -9,6 +9,7 @@
     "react-dom": "^16.8.6",
     "react-image": "^2.1.1",
     "react-loader-spinner": "^2.3.0",
+    "react-paginate": "^6.3.0",
     "react-redux": "^7.0.2",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",

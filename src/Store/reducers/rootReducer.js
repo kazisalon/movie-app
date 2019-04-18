@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
-import movies from './moviesReducers';
-
+import fetching from './fetchingReducers';
+import inputReducers from './inputReducers';
+import paginationReducers from './paginationReducer';
 
 export default combineReducers({
-  movies,
+  fetching,
+  inputReducers,
+  paginationReducers,
 });

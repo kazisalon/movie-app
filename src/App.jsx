@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Components/Header/Header';
 import Main from './Components/Main/Main';
-// TO DO
-// import Paganation from './Components/Paganation/Paganation';
+import Pagination from './Components/Pagination/Pagination';
 // import Footer from './Components/Footer/Footer';
 
 class App extends Component {
@@ -12,12 +11,11 @@ class App extends Component {
         <Header />
         <Main />
         {/* TO DO */}
-        {/* <Paganation />
-        <Footer />  */}
+        <Pagination />
+        {/* <Footer />  */}
       </div>
     );
   }
 }
-
 
 export default App;

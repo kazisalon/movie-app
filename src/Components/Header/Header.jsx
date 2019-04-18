@@ -2,22 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import logo from '../../logo.svg';
 import './Header.css';
-import { fetchMovieByInput } from '../../Store/actions/moviesActions';
+import { fetchMovieByInput } from '../../Store/actions/inputActions';
 
 const Header = props => (
   <div className="header">
-    <div className="header-logo-wrapper">
+    <button
+      type="button"
+      onClick={() => {
+        props.sendSearchQuery('');
+      }}
+      className="header-logo-wrapper"
+    >
       <img src={logo} className="header-logo" alt="logo" />
       <span className="header-text">Movies App</span>
-    </div>
+    </button>
     <div className="search-wrapper">
       <form className="search-form" onSubmit={e => e.preventDefault()}>
         <input
           className="search-input"
-          placeholder="Seach films..."
+          placeholder="Search films..."
           value={props.inputValue}
           onFocus={e => (e.target.placeholder = '')}
-          onBlur={e => (e.target.placeholder = 'Seach films...')}
+          onBlur={e => (e.target.placeholder = 'Search films...')}
           onChange={e => props.sendSearchQuery(e.target.value)}
         />
         <button type="submit" className="search-button">
@@ -33,7 +39,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  inputValue: state.movies.inputValue,
+  inputValue: state.inputReducers.inputValue,
 });
 
 export default connect(
