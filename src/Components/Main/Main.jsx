@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { fetchMovies } from "../../Store/actions/moviesActions";
-import Movie from "./Movie/Movie";
-import "./Main.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchMovies } from '../../Store/actions/moviesActions';
+import Movie from './Movie/Movie';
+import './Main.css';
 
 class Main extends Component {
   componentDidMount() {
@@ -15,7 +15,11 @@ class Main extends Component {
     if (error) {
       return (
         <div className="main-wrapper">
-          <div>Error! {error.message}</div>;
+          <div>
+            Error!
+            {error.message}
+          </div>
+          ;
         </div>
       );
     }
@@ -28,17 +32,15 @@ class Main extends Component {
       );
     }
 
-    const films = items.map(film => {
-      return (
-        <Movie
-          key={film.id}
-          title={film.title}
-          overview={film.overview}
-          poster={film.poster_path}
-          rank={film.vote_average}
-        />
-      );
-    });
+    const films = items.map(film => (
+      <Movie
+        key={film.id}
+        title={film.title}
+        overview={film.overview}
+        poster={film.poster_path}
+        rank={film.vote_average}
+      />
+    ));
     return (
       <div className="main-wrapper">
         <ul className="movies-list">{films}</ul>
@@ -50,7 +52,7 @@ class Main extends Component {
 const mapStateToProps = state => ({
   items: state.movies.items,
   loading: state.movies.loading,
-  error: state.movies.error
+  error: state.movies.error,
 });
 
 export default connect(mapStateToProps)(Main);

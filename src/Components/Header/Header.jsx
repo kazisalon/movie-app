@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import logo from "../../logo.svg";
-import "./Header.css";
-import { fetchMovieByInput } from "../../Store/actions/moviesActions";
+import React from 'react';
+import { connect } from 'react-redux';
+import logo from '../../logo.svg';
+import './Header.css';
+import { fetchMovieByInput } from '../../Store/actions/moviesActions';
 
 const Header = props => (
   <div className="header">
@@ -15,8 +15,9 @@ const Header = props => (
         <input
           className="search-input"
           placeholder="Seach films..."
-          onFocus={e => (e.target.placeholder = "")}
-          onBlur={e => (e.target.placeholder = "Seach films...")}
+          value={props.inputValue}
+          onFocus={e => (e.target.placeholder = '')}
+          onBlur={e => (e.target.placeholder = 'Seach films...')}
           onChange={e => props.sendSearchQuery(e.target.value)}
         />
         <button type="submit" className="search-button">
@@ -28,10 +29,14 @@ const Header = props => (
 );
 
 const mapDispatchToProps = dispatch => ({
-  sendSearchQuery: inputData => dispatch(fetchMovieByInput(inputData))
+  sendSearchQuery: inputData => dispatch(fetchMovieByInput(inputData)),
+});
+
+const mapStateToProps = state => ({
+  inputValue: state.movies.inputValue,
 });
 
 export default connect(
-  null,
-  mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(Header);

@@ -1,26 +1,26 @@
-export const FETCH_MOVIES_BEGIN = "FETCH_MOVIES_BEGIN";
-export const FETCH_MOVIES_SUCCESS = "FETCH_MOVIES_SUCCESS";
-export const FETCH_MOVIES_FAILURE = "FETCH_MOVIES_FAILURE";
-export const FETCH_MOVIES_ADD_INPUT_VALUE = "FETCH_MOVIES_ADD_INPUT_VALUE";
+export const FETCH_MOVIES_BEGIN = 'FETCH_MOVIES_BEGIN';
+export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
+export const FETCH_MOVIES_FAILURE = 'FETCH_MOVIES_FAILURE';
+export const FETCH_MOVIES_ADD_INPUT_VALUE = 'FETCH_MOVIES_ADD_INPUT_VALUE';
 
 export const fetchMoviesBegin = () => ({
-  type: FETCH_MOVIES_BEGIN
+  type: FETCH_MOVIES_BEGIN,
 });
 
 export const fetchMoviesSuccess = movies => ({
   type: FETCH_MOVIES_SUCCESS,
-  payload: { movies }
+  payload: { movies },
 });
 
 export const fetchMoviesFailure = error => ({
   type: FETCH_MOVIES_FAILURE,
-  payload: { error }
+  payload: { error },
 });
 
 export const fetchMovieAddInputValue = inputValue => ({
   type: FETCH_MOVIES_ADD_INPUT_VALUE,
-  payload: { inputValue }
-})
+  payload: { inputValue },
+});
 
 function handleErrors(response) {
   if (!response.ok) {
@@ -29,32 +29,31 @@ function handleErrors(response) {
   return response;
 }
 
-
-export function fetchMovieByInput(inputValue)  {
-  return (dispatch, getState) => {
-    dispatch(fetchMovieAddInputValue(inputValue));
-    const value = getState().movies.inputValue;
-    dispatch(fetchMovies(value));
-  }
-}
-
-
 export function fetchMovies(inputValue) {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(fetchMoviesBegin());
     let response;
     if (inputValue) {
       response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=5874acfd11651a28c55771624f7021f4&query=${inputValue}`
+        `https://api.themoviedb.org/3/search/movie?api_key=5874acfd11651a28c55771624f7021f4&query=${inputValue}`,
       );
     } else {
       response = await fetch(
-        "https://api.themoviedb.org/3/movie/now_playing?api_key=5874acfd11651a28c55771624f7021f4&page=1"
+        'https://api.themoviedb.org/3/movie/now_playing?api_key=5874acfd11651a28c55771624f7021f4&page=1',
       );
     }
     const res = handleErrors(response);
     const json = await res.json();
+    console.log(json);
     dispatch(fetchMoviesSuccess(json.results));
     return json.results;
+  };
+}
+
+export function fetchMovieByInput(inputValue) {
+  return (dispatch, getState) => {
+    dispatch(fetchMovieAddInputValue(inputValue));
+    const value = getState().movies.inputValue;
+    dispatch(fetchMovies(value));
   };
 }
