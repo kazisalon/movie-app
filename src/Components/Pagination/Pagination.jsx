@@ -5,14 +5,8 @@ import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { fetchMovies } from '../../Store/actions/fetchingActions';
 import { changePage } from '../../Store/actions/paginationActions';
-import Button from './Button/Button';
 
 class pagination extends Component {
-  constructor(props) {
-    super(props);
-    // this.handleClick = this.handleClick.bind(this);
-  }
-
   render() {
     const handleClick = (e) => {
       // e = custom event from ReactPaginate
@@ -24,12 +18,6 @@ class pagination extends Component {
     return (
       <React.Fragment>
         <div className="pagination-wrapper">
-          pagination
-          {/* <Button
-          handleClick={this.handleClick}
-          currentPage={this.props.currentPage}
-        />
-        <div className="commentBox"> */}
           <ReactPaginate
             previousLabel="previous"
             nextLabel="next"
@@ -37,7 +25,7 @@ class pagination extends Component {
             breakClassName="break-me"
             pageCount={this.props.pages}
             marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
+            pageRangeDisplayed={8}
             onPageChange={e => handleClick(e)}
             containerClassName="pagination"
             subContainerClassName="pages pagination"

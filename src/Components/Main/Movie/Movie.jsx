@@ -39,7 +39,6 @@ const Movie = props => (
           rel="noopener noreferrer"
         >
           <span className="movie-title">{props.title}</span>
-{' '}
         </a>
         <span className="movie-rank">
           <span>IMDb</span>
