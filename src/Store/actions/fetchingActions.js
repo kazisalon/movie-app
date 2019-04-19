@@ -32,13 +32,17 @@ function handleErrors(response) {
 const MOVIEDB_API_KEY = '5874acfd11651a28c55771624f7021f4';
 const MOVIEDB_BASE_URL = 'https://api.themoviedb.org/3';
 
-export function fetchMovies(inputValue, page = 1) {
+export function fetchMovies(inputValue, page = 1, genreId) {
   return async (dispatch) => {
     dispatch(fetchMoviesBegin());
     let response;
     if (inputValue) {
       response = await fetch(
         `${MOVIEDB_BASE_URL}/search/movie?api_key=${MOVIEDB_API_KEY}&query=${inputValue}&page=${page}`,
+      );
+    } else if (genreId) {
+      response = await fetch(
+        `${MOVIEDB_BASE_URL}/discover/movie?api_key=${MOVIEDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreId}`,
       );
     } else {
       response = await fetch(

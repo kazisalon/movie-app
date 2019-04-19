@@ -12,8 +12,13 @@ class pagination extends Component {
       // e = custom event from ReactPaginate
       const nextPage = e.selected + 1;
       console.log(nextPage);
+      console.log(this.props.genreId);
       this.props.nextPage(nextPage);
-      this.props.downloadMovies(this.props.inputValue, nextPage);
+      this.props.downloadMovies(
+        this.props.inputValue,
+        nextPage,
+        this.props.genreId,
+      );
     };
     return (
       <React.Fragment>
@@ -39,8 +44,8 @@ class pagination extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  downloadMovies: (input, page) => {
-    dispatch(fetchMovies(input, page));
+  downloadMovies: (input, page, genreId) => {
+    dispatch(fetchMovies(input, page, genreId));
   },
   nextPage: (nextPage) => {
     dispatch(changePage(nextPage));
@@ -51,6 +56,7 @@ const mapStateToProps = state => ({
   inputValue: state.inputReducers.inputValue,
   pages: state.paginationReducers.pages,
   currentPage: state.paginationReducers.currentPage,
+  genreId: state.filterReducers.value,
 });
 
 export default connect(

@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import logo from '../../logo.svg';
 import './Header.css';
 import { fetchMovieByInput } from '../../Store/actions/inputActions';
+import SelectGenre from './Filters/SelectGenre/SelectGenre';
 
 const Header = props => (
   <div className="header">
     <button
       type="button"
+      // clean input
       onClick={() => {
         props.sendSearchQuery('');
       }}
@@ -16,6 +18,13 @@ const Header = props => (
       <img src={logo} className="header-logo" alt="logo" />
       <span className="header-text">Movies App</span>
     </button>
+
+    {/* value={this.props.genre}
+    onChange={onGenreChange}
+    onClear={onGenreClear} */}
+
+    <SelectGenre />
+
     <div className="search-wrapper">
       <form className="search-form" onSubmit={e => e.preventDefault()}>
         <input

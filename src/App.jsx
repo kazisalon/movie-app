@@ -10,7 +10,6 @@ class App extends Component {
       <div>
         <Header />
         <Main />
-        {/* TO DO */}
         <Pagination />
         {/* <Footer />  */}
       </div>

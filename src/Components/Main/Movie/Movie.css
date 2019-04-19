@@ -39,7 +39,7 @@
   display: block;
   height: 200px;
   min-width: 150px;
-  opacity: 0.93;
+  opacity: 0.9;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -47,7 +47,7 @@
   margin-left: 15px;
   overflow-y: auto;
   height: 200px;
-  opacity: 0.95;
+  opacity: 0.9;
   padding-right: 10px;
 }
 
@@ -58,8 +58,9 @@
 }
 
 .movie-info::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
   background-color: #23252b;
+  border-radius: 10px;
 }
 
 .movie-info::-webkit-scrollbar-thumb {

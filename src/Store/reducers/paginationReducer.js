@@ -5,7 +5,6 @@ import { FETCH_PAGE_COUNT } from '../actions/fetchingActions';
 const initialState = {
   pages: 0,
   currentPage: 1,
-  offset: 0,
 };
 
 export default function moviesReducer(state = initialState, action) {
