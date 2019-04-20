@@ -7,13 +7,18 @@
   flex-wrap: wrap;
 }
 
-/* @media screen and (max-width: 1149px) {
+@media screen and (max-width: 1183px) {
   .header {
     height: 140px;
   }
 }
 
-@media screen and (max-width: 864px) {
+@media screen and (max-width: 865px) {
+  .header {
+    height: 190px;
+  }
+}
+/* @media screen and (max-width: 864px) {
   .header {
     height: 190px;
   }
@@ -28,17 +33,18 @@
   font: inherit;
   outline: none;
   cursor: pointer;
-  min-width: 259px;
   height: 50px;
   margin-top: 16px;
+  width: 25%;
 }
 
-/* @media screen and (max-width: 1149px) {
+@media screen and (max-width: 1183px) {
   .header-logo-wrapper {
     margin: 0 auto;
     margin-top: 13px;
+    width: 300px;
   }
-} */
+}
 
 /* Remove excess padding and border in Firefox 4+ */
 /* header-logo-wrapper::-moz-focus-inner {

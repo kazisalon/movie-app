@@ -21,7 +21,7 @@ wasn't optimised for using plain css so we make this workaround  */
   cursor: pointer !important;
   outline: none !important;
   box-shadow: none !important;
-  min-width: 165px;
+  min-width: 200px;
   display: flex !important;
 }
 
@@ -45,7 +45,6 @@ wasn't optimised for using plain css so we make this workaround  */
 
 .react-select__single-value {
   color: #8e95a5 !important;
-  opacity: 0.8 !important;
   font-size: 17px;
 }
 
@@ -89,20 +88,32 @@ wasn't optimised for using plain css so we make this workaround  */
 .filters-container {
   display: flex;
   width: 75%;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 25px;
   min-width: 875px;
 }
 
+@media screen and (max-width: 1182px) {
+  .filters-container {
+  }
+}
+
 .filter-buttons-container {
   max-width: 65%;
   display: flex;
+  margin-left: 18%;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 1182px) {
   .filter-buttons-container {
-    max-width: 100%;
+    margin-left: 5%;
+  }
+}
+@media screen and (max-width: 865px) {
+  .filter-buttons-container {
+    width: 405px;
+    margin: 0 auto;
   }
 }
 
@@ -112,7 +123,7 @@ wasn't optimised for using plain css so we make this workaround  */
   }
 }
 
-@media screen and (max-width: 1148px) {
+@media screen and (max-width: 1182px) {
   .filters-container {
     margin: 0 auto;
   }
@@ -123,6 +134,18 @@ wasn't optimised for using plain css so we make this workaround  */
     min-width: 0;
     margin-top: 10px;
     height: 100px;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .filters-container {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .filter-buttons-container {
+    margin: 0 0;
   }
 }
 
@@ -137,6 +160,11 @@ wasn't optimised for using plain css so we make this workaround  */
   .search-wrapper {
     height: 39px;
     margin-bottom: 28px;
+  }
+}
+@media screen and (max-width: 435px) {
+  .search-wrapper {
+    width: 80%;
   }
 }
 
@@ -161,14 +189,24 @@ wasn't optimised for using plain css so we make this workaround  */
   width: 100%;
 }
 
-@media screen and (max-width: 864px) {
+@media screen and (max-width: 865px) {
   .search-input {
+    width: 383px;
     margin-top: 15px;
+    margin-left: 61%;
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 675px) {
   .search-input {
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .search-input {
+    width: 100%;
   }
 }
 
@@ -211,7 +249,7 @@ wasn't optimised for using plain css so we make this workaround  */
   outline: none;
   text-align: inherit;
   height: 39px;
-  margin-left: 50px;
+  margin-left: 15px;
 }
 
 @media screen and (max-width: 570px) {
@@ -251,6 +289,12 @@ wasn't optimised for using plain css so we make this workaround  */
   font-size: 17px;
   text-align: start;
   min-width: 98px;
+}
+
+@media screen and (max-width: 425px) {
+  .popularity-button {
+    display: none;
+  }
 }
 
 .popularity-button:-moz-focus-inner {

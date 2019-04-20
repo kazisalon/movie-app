@@ -43,6 +43,7 @@ class Filters extends Component {
   };
 
   render() {
+    const genre = genreOptions.find(o => o.value === this.props.genreId);
     return (
       <>
         <div className="filters-container">
@@ -50,7 +51,7 @@ class Filters extends Component {
             <Select
               className="react-select-container"
               classNamePrefix="react-select"
-              value={this.props.genreLabel}
+              value={genre || null}
               isDisabled={false}
               isLoading={false}
               isClearable
