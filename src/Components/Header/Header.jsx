@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import logo from '../../logo.svg';
 import './Header.css';
+import Filters from './Filters/Filters';
 import { fetchMovieByInput } from '../../Store/actions/inputActions';
-import SelectGenre from './Filters/SelectGenre/SelectGenre';
 
 const Header = props => (
   <div className="header">
@@ -19,27 +19,7 @@ const Header = props => (
       <span className="header-text">Movies App</span>
     </button>
 
-    {/* value={this.props.genre}
-    onChange={onGenreChange}
-    onClear={onGenreClear} */}
-
-    <SelectGenre />
-
-    <div className="search-wrapper">
-      <form className="search-form" onSubmit={e => e.preventDefault()}>
-        <input
-          className="search-input"
-          placeholder="Search films..."
-          value={props.inputValue}
-          onFocus={e => (e.target.placeholder = '')}
-          onBlur={e => (e.target.placeholder = 'Search films...')}
-          onChange={e => props.sendSearchQuery(e.target.value)}
-        />
-        <button type="submit" className="search-button">
-          <i className="fa fa-search" />
-        </button>
-      </form>
-    </div>
+    <Filters />
   </div>
 );
 

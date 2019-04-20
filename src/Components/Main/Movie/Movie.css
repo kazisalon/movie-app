@@ -49,6 +49,7 @@
   height: 200px;
   opacity: 0.9;
   padding-right: 10px;
+  cursor: default;
 }
 
 .movie-info::-webkit-scrollbar-track {

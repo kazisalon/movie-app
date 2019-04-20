@@ -11,6 +11,10 @@ class pagination extends Component {
     const handleClick = (e) => {
       // e = custom event from ReactPaginate
       const nextPage = e.selected + 1;
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
       console.log(nextPage);
       console.log(this.props.genreId);
       this.props.nextPage(nextPage);
@@ -18,6 +22,8 @@ class pagination extends Component {
         this.props.inputValue,
         nextPage,
         this.props.genreId,
+        this.props.byRating,
+        this.props.byPopularity,
       );
     };
     return (
@@ -44,8 +50,8 @@ class pagination extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  downloadMovies: (input, page, genreId) => {
-    dispatch(fetchMovies(input, page, genreId));
+  downloadMovies: (input, page, genreId, byRating, byPopularity) => {
+    dispatch(fetchMovies(input, page, genreId, byRating, byPopularity));
   },
   nextPage: (nextPage) => {
     dispatch(changePage(nextPage));
@@ -56,7 +62,9 @@ const mapStateToProps = state => ({
   inputValue: state.inputReducers.inputValue,
   pages: state.paginationReducers.pages,
   currentPage: state.paginationReducers.currentPage,
-  genreId: state.filterReducers.value,
+  genreId: state.genreReducers.value,
+  byRating: state.filterReducers.byRating,
+  byPopularity: state.filterReducers.byPopularity,
 });
 
 export default connect(

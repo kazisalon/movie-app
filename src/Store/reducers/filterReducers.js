@@ -1,18 +1,21 @@
-import { CHANGE_GENRE_ID } from '../actions/filterActions';
+import { TOGGLE_POPULARITY, TOGGLE_RATINGS } from '../actions/filterActions';
 
 const initialState = {
-  // genreId , genreLabel
-  value: null,
-  label: null,
+  byPopularity: false,
+  byRating: false,
 };
 
-export default function moviesReducer(state = initialState, action) {
+export default function genreReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_GENRE_ID:
+    case TOGGLE_POPULARITY:
       return {
         ...state,
-        value: action.payload.value,
-        label: action.payload.label,
+        byPopularity: !state.byPopularity,
+      };
+    case TOGGLE_RATINGS:
+      return {
+        ...state,
+        byRating: !state.byRating,
       };
 
     default:

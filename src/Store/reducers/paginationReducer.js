@@ -7,7 +7,7 @@ const initialState = {
   currentPage: 1,
 };
 
-export default function moviesReducer(state = initialState, action) {
+export default function paginationReducer(state = initialState, action) {
   switch (action.type) {
     case RESET_PAGE_NUMBER:
       return {
