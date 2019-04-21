@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import 'ie-array-find-polyfill';
+import 'promise-polyfill';
+import 'whatwg-fetch';
 import rootReducer from './Store/reducers/rootReducer';
 import './index.css';
 import App from './App';
