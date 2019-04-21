@@ -1,5 +1,5 @@
 /* overriding component (React-Select) css styles, React-Select library 
-wasn't optimised for using plain css so we make this workaround  */
+wasn't optimized for using plain css so I make this workaround  */
 
 .react-select-container {
   height: 39px !important;
@@ -16,7 +16,7 @@ wasn't optimised for using plain css so we make this workaround  */
 
 .react-select__control {
   height: 39px !important;
-  background-color: unset !important;
+  background-color: #1e2028 !important;
   border: 1px solid #424754 !important;
   cursor: pointer !important;
   outline: none !important;
@@ -61,15 +61,9 @@ wasn't optimised for using plain css so we make this workaround  */
   background-color: #8e95a5 !important;
 }
 
-/* .css-bg1rzq-control {
-  background-color: unset !important;
-  border: 1px solid #424754 !important;
-  border-radius: 5px !important;
-} */
-
 /* scroll */
 .react-select__menu-list::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   background-color: #2d3038;
 }
@@ -81,7 +75,7 @@ wasn't optimised for using plain css so we make this workaround  */
 
 .react-select__menu-list::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #1e2028;
 }
 
@@ -92,35 +86,7 @@ wasn't optimised for using plain css so we make this workaround  */
   flex-wrap: wrap;
   margin-top: 25px;
   min-width: 875px;
-}
-
-@media screen and (max-width: 1182px) {
-  .filters-container {
-  }
-}
-
-.filter-buttons-container {
-  max-width: 65%;
-  display: flex;
-  margin-left: 18%;
-}
-
-@media screen and (max-width: 1182px) {
-  .filter-buttons-container {
-    margin-left: 5%;
-  }
-}
-@media screen and (max-width: 865px) {
-  .filter-buttons-container {
-    width: 405px;
-    margin: 0 auto;
-  }
-}
-
-@media screen and (max-width: 570px) {
-  .filter-buttons-container {
-    max-width: none;
-  }
+  justify-content: flex-end;
 }
 
 @media screen and (max-width: 1182px) {
@@ -134,6 +100,7 @@ wasn't optimised for using plain css so we make this workaround  */
     min-width: 0;
     margin-top: 10px;
     height: 100px;
+    justify-content: normal;
   }
 }
 
@@ -143,9 +110,32 @@ wasn't optimised for using plain css so we make this workaround  */
   }
 }
 
+.filter-buttons-container {
+  max-width: 65%;
+  display: flex;
+  margin-right: 25px;
+}
+
+@media screen and (max-width: 1182px) {
+  .filter-buttons-container {
+    margin-left: 5%;
+  }
+}
+@media screen and (max-width: 870px) {
+  .filter-buttons-container {
+    width: 405px;
+    margin: 0 auto;
+  }
+}
 @media screen and (max-width: 675px) {
   .filter-buttons-container {
     margin: 0 0;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .filter-buttons-container {
+    max-width: none;
   }
 }
 
@@ -189,7 +179,7 @@ wasn't optimised for using plain css so we make this workaround  */
   width: 100%;
 }
 
-@media screen and (max-width: 865px) {
+@media screen and (max-width: 864px) {
   .search-input {
     width: 383px;
     margin-top: 15px;
@@ -235,7 +225,7 @@ wasn't optimised for using plain css so we make this workaround  */
   }
 }
 
-.filter-button {
+.filter-buttons {
   display: block;
   border: none;
   margin: 0;
@@ -253,7 +243,7 @@ wasn't optimised for using plain css so we make this workaround  */
 }
 
 @media screen and (max-width: 570px) {
-  .filter-button {
+  .filter-buttons {
     margin-left: 10px;
   }
 }

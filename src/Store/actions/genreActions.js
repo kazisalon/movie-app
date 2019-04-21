@@ -1,6 +1,7 @@
 import { fetchMovies } from './fetchingActions';
-import { resetPageNumber, resetInputValue } from './inputActions';
+import { resetInputValue } from './inputActions';
 import { toggleRating, togglePopularity } from './filterActions';
+import { resetPageNumber } from './paginationActions';
 
 export const CHANGE_GENRE_VALUE = 'CHANGE_GENRE_VALUE';
 
@@ -12,13 +13,14 @@ export const changeGenreValue = (value = { value: 0, label: 'Genre' }) => ({
 export function fetchMovieByGenre(value) {
   return (dispatch, getState) => {
     dispatch(changeGenreValue(value));
+    // eslint-disable-next-line prefer-destructuring
     const byPopularity = getState().filterReducers.byPopularity;
+    // eslint-disable-next-line prefer-destructuring
     const byRating = getState().filterReducers.byRating;
     const genreStateId = getState().genreReducers.value;
     if (byPopularity) dispatch(togglePopularity());
     if (byRating) dispatch(toggleRating());
     dispatch(fetchMovies(null, null, genreStateId));
-    console.log(genreStateId);
     dispatch(resetPageNumber());
     dispatch(resetInputValue());
   };

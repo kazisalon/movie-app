@@ -1,20 +1,15 @@
 .pagination-wrapper {
   height: 125px;
   background: #1e2028;
-}
-.second-page {
-  height: 100px;
-  background: grey;
+  display: flex;
 }
 
 .pagination {
   margin: 0 auto;
   padding-top: 45px;
   display: flex;
-  justify-content: space-between;
   padding-left: 0;
   border-radius: 4px;
-  width: 50%;
 }
 
 .pagination > li {

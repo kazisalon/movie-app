@@ -1,29 +1,24 @@
 .main-wrapper {
   height: 100%;
   background: #23252b;
-  color: white;
-  padding-top: 30px;
-  min-height: 1000px;
+  padding-top: 14px;
   padding-bottom: 20px;
+  /* useful during reloading */
+  min-height: 1300px;
 }
 
 .movies-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 auto;
   height: 100%;
   padding-left: 15px;
   padding-right: 15px;
 }
 
 .loading {
+  margin-top: 25px;
   text-align: center;
   font-size: 30px;
   color: #646b7f;
-}
-
-a {
-  color: #f4f4f4;
-  text-decoration: none; /* no underline */
 }

@@ -17,7 +17,6 @@ export default function genreReducer(state = initialState, action) {
         ...state,
         byRating: !state.byRating,
       };
-
     default:
       return state;
   }

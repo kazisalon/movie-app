@@ -5,33 +5,32 @@ import './Header.css';
 import Filters from './Filters/Filters';
 import { fetchMovieByInput } from '../../Store/actions/inputActions';
 
-const Header = props => (
-  <div className="header">
-    <button
-      type="button"
-      // clean input
-      onClick={() => {
-        props.sendSearchQuery('');
-      }}
-      className="header-logo-wrapper"
-    >
-      <img src={logo} className="header-logo" alt="logo" />
-      <span className="header-text">Movies App</span>
-    </button>
+const Header = (props) => {
+  const { sendSearchQuery } = props;
+  return (
+    <div className="header">
+      <button
+        type="button"
+        // clean input
+        onClick={() => {
+          sendSearchQuery('');
+        }}
+        className="header-logo-wrapper"
+      >
+        <img src={logo} className="header-logo" alt="logo" />
+        <span className="header-text">Movies App</span>
+      </button>
 
-    <Filters />
-  </div>
-);
+      <Filters />
+    </div>
+  );
+};
 
 const mapDispatchToProps = dispatch => ({
   sendSearchQuery: inputData => dispatch(fetchMovieByInput(inputData)),
 });
 
-const mapStateToProps = state => ({
-  inputValue: state.inputReducers.inputValue,
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Header);

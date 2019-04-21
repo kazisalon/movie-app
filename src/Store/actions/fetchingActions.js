@@ -22,16 +22,24 @@ export const fetchPageCount = count => ({
   payload: count,
 });
 
-function handleErrors(response) {
+const handleErrors = (response) => {
   if (!response.ok) {
-    throw Error(response.statusText);
+    // eslint-disable-next-line no-console
+    console.log(response.statusText);
   }
   return response;
-}
+};
 
 const MOVIEDB_API_KEY = '5874acfd11651a28c55771624f7021f4';
 const MOVIEDB_BASE_URL = 'https://api.themoviedb.org/3';
 
+// I tried different approaches on how to organize this action, and I think this can the best way
+// of how to organize fetching(in this particular case).When we have all the logic in one place.
+// If we would have one action for every kind of fetching, it leads to the duplicating of code
+// and if you change something, you will be forced to change the logic in different places of
+// different components, because which fetching action we should call depends on a lot of factors
+// like existing of text in input, state of "byPopularity", page and so on.
+// This approach can be wrong(and probably it is), just wanted to show my point.
 export function fetchMovies(
   inputValue,
   page = 1,
@@ -41,8 +49,6 @@ export function fetchMovies(
 ) {
   return async (dispatch) => {
     dispatch(fetchMoviesBegin());
-    console.log(genreId);
-    console.log(inputValue);
     let response;
     if (popularity && genreId) {
       response = await fetch(
@@ -75,9 +81,8 @@ export function fetchMovies(
     }
     const res = handleErrors(response);
     const json = await res.json();
+    // eslint-disable-next-line prefer-destructuring
     const results = json.results;
-    console.log(json);
-    console.log(json.results);
     const pageCount = json.total_pages;
     dispatch(fetchPageCount(pageCount));
     dispatch(fetchMoviesSuccess(results));

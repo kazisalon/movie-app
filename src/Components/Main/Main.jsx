@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMovies } from '../../Store/actions/fetchingActions';
 import Movie from './Movie/Movie';
 import './Main.css';
+import { fetchMovies } from '../../Store/actions/fetchingActions';
 
 class Main extends Component {
   componentDidMount() {
@@ -42,6 +42,7 @@ class Main extends Component {
         rank={film.vote_average}
       />
     ));
+    
     return (
       <div className="main-wrapper">
         <ul className="movies-list">{films}</ul>
@@ -57,8 +58,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  downloadMovies: (input, page) => {
-    dispatch(fetchMovies(input, page));
+  downloadMovies: () => {
+    dispatch(fetchMovies());
   },
 });
 

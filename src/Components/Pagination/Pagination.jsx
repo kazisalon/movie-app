@@ -1,47 +1,88 @@
-/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import './Pagination.css';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
+import './Pagination.css';
 import { fetchMovies } from '../../Store/actions/fetchingActions';
-import { changePage } from '../../Store/actions/paginationActions';
+import {
+  changePage,
+  updateWindowWidth,
+} from '../../Store/actions/paginationActions';
 
-class pagination extends Component {
+class Pagination extends Component {
+  constructor(props) {
+    super(props);
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.props.updateWindowWidth(window.innerWidth);
+  }
+
   render() {
+    const {
+      inputValue,
+      pages,
+      genreId,
+      byRating,
+      byPopularity,
+      windowWidth,
+      currentPage,
+      downloadMovies,
+      nextPage,
+    } = this.props;
+
     const handleClick = (e) => {
-      // e = custom event from ReactPaginate
-      const nextPage = e.selected + 1;
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
       });
-      console.log(nextPage);
-      console.log(this.props.genreId);
-      this.props.nextPage(nextPage);
-      this.props.downloadMovies(
-        this.props.inputValue,
-        nextPage,
-        this.props.genreId,
-        this.props.byRating,
-        this.props.byPopularity,
+      // e = custom event from ReactPaginate
+      const countedNextPage = e.selected + 1;
+      nextPage(countedNextPage);
+      downloadMovies(
+        inputValue,
+        countedNextPage,
+        genreId,
+        byRating,
+        byPopularity,
       );
+    };
+    // Responsiveness by decreasing the number of items in pagination
+    const choosePageRangeDisplayed = () => {
+      if (windowWidth > 1000) {
+        return 8;
+      }
+      if (windowWidth <= 1000 && windowWidth > 600) {
+        return 4;
+      }
+      return 1;
     };
     return (
       <React.Fragment>
         <div className="pagination-wrapper">
           <ReactPaginate
             previousLabel="previous"
+            pageClassName="page"
             nextLabel="next"
             breakLabel="..."
             breakClassName="break-me"
-            pageCount={this.props.pages}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={8}
+            pageCount={pages}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={choosePageRangeDisplayed()}
             onPageChange={e => handleClick(e)}
             containerClassName="pagination"
             subContainerClassName="pages pagination"
             activeClassName="active"
-            forcePage={this.props.currentPage - 1}
+            forcePage={currentPage - 1}
           />
         </div>
       </React.Fragment>
@@ -56,12 +97,16 @@ const mapDispatchToProps = dispatch => ({
   nextPage: (nextPage) => {
     dispatch(changePage(nextPage));
   },
+  updateWindowWidth: (width) => {
+    dispatch(updateWindowWidth(width));
+  },
 });
 
 const mapStateToProps = state => ({
   inputValue: state.inputReducers.inputValue,
   pages: state.paginationReducers.pages,
   currentPage: state.paginationReducers.currentPage,
+  windowWidth: state.paginationReducers.windowWidth,
   genreId: state.genreReducers.value,
   byRating: state.filterReducers.byRating,
   byPopularity: state.filterReducers.byPopularity,
@@ -70,4 +115,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(pagination);
+)(Pagination);

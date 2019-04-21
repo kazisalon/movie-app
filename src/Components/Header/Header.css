@@ -18,11 +18,7 @@
     height: 190px;
   }
 }
-/* @media screen and (max-width: 864px) {
-  .header {
-    height: 190px;
-  }
-} */
+
 
 .header-logo-wrapper {
   display: flex;
@@ -45,18 +41,6 @@
     width: 300px;
   }
 }
-
-/* Remove excess padding and border in Firefox 4+ */
-/* header-logo-wrapper::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-@media screen and (max-width: 500px) {
-  .header-logo-wrapper {
-    margin-left: 10%;
-  }
-} */
 
 .header-text {
   font-size: 36px;

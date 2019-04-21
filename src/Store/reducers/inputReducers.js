@@ -1,5 +1,5 @@
 import {
-  FETCH_MOVIES_ADD_INPUT_VALUE,
+  CHANGE_INPUT_VALUE,
   RESET_INPUT_VALUE,
 } from '../actions/inputActions';
 
@@ -9,7 +9,7 @@ const initialState = {
 
 export default function inputReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_MOVIES_ADD_INPUT_VALUE:
+    case CHANGE_INPUT_VALUE:
       return {
         ...state,
         inputValue: action.payload.inputValue,

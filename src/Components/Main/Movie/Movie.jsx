@@ -4,31 +4,32 @@ import Img from 'react-image';
 import Loader from 'react-loader-spinner';
 import FallbackImg from '../../FallbackImg';
 
-const FALLBACK_IMG =  'https://image.tmdb.org/t/p/w200/xPu5camdNW7ga5QeHGJhiMbQ62B.jpg';
-
 const Movie = (props) => {
-  const url = props.poster
-    ? `https://image.tmdb.org/t/p/w200/${props.poster}`
+  const {
+    poster, id, title, rank, overview,
+  } = props;
+  const FALLBACK_IMG = 'https://image.tmdb.org/t/p/w200/xPu5camdNW7ga5QeHGJhiMbQ62B.jpg';
+  const url = poster
+    ? `https://image.tmdb.org/t/p/w200/${poster}`
     : FALLBACK_IMG;
   return (
     <li className="movie-wrapper">
       <a
-        href={`https://www.themoviedb.org/movie/${props.id}`}
+        href={`https://www.themoviedb.org/movie/${id}`}
         target="_blank"
         rel="noopener noreferrer"
       >
         <Img
           className="movie-poster"
           src={url}
-          loader={
-            // eslint-disable-next-line react/jsx-wrap-multilines
+          loader={(
             <Loader
               type="Triangle"
               color="rgba(245, 245, 245, 0.9)"
               height={100}
               width={100}
             />
-          }
+          )}
           // second fallback img
           unloader={<FallbackImg />}
         />
@@ -36,19 +37,19 @@ const Movie = (props) => {
       <div className="movie-info">
         <div>
           <a
-            href={`https://www.themoviedb.org/movie/${props.id}`}
+            href={`https://www.themoviedb.org/movie/${id}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span className="movie-title">{props.title}</span>
+            <span className="movie-title">{title}</span>
           </a>
           <span className="movie-rank">
             <span>IMDb</span>
             <i className="fas fa-star" />
-            <span className="movie-rank-number">{props.rank}</span>
+            <span className="movie-rank-number">{rank}</span>
           </span>
         </div>
-        <span className="movie-overview">{props.overview}</span>
+        <span>{overview}</span>
       </div>
     </li>
   );

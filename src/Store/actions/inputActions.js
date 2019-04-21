@@ -1,18 +1,14 @@
 import { fetchMovies } from './fetchingActions';
 import { changeGenreValue } from './genreActions';
+import { toggleRating, togglePopularity } from './filterActions';
+import { resetPageNumber } from './paginationActions';
 
-export const FETCH_MOVIES_ADD_INPUT_VALUE = 'FETCH_MOVIES_ADD_INPUT_VALUE';
-export const RESET_PAGE_NUMBER = 'RESET_PAGE_NUMBER';
+export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const RESET_INPUT_VALUE = 'RESET_INPUT_VALUE';
 
-export const fetchMovieAddInputValue = (inputValue = '') => ({
-  type: FETCH_MOVIES_ADD_INPUT_VALUE,
+export const changeInputValue = (inputValue = '') => ({
+  type: CHANGE_INPUT_VALUE,
   payload: { inputValue },
-});
-
-export const resetPageNumber = () => ({
-  type: RESET_PAGE_NUMBER,
-  payload: 1,
 });
 
 export const resetInputValue = () => ({
@@ -21,10 +17,16 @@ export const resetInputValue = () => ({
 
 export function fetchMovieByInput(inputValue) {
   return (dispatch, getState) => {
-    dispatch(fetchMovieAddInputValue(inputValue));
+    dispatch(changeInputValue(inputValue));
     const value = getState().inputReducers.inputValue;
     dispatch(fetchMovies(value));
     dispatch(resetPageNumber());
+    // eslint-disable-next-line prefer-destructuring
+    const byPopularity = getState().filterReducers.byPopularity;
+    // eslint-disable-next-line prefer-destructuring
+    const byRating = getState().filterReducers.byRating;
+    if (byPopularity) dispatch(togglePopularity());
+    if (byRating) dispatch(toggleRating());
     const clearValue = { value: 0, label: 'Genre' };
     dispatch(changeGenreValue(clearValue));
   };

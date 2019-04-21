@@ -13,7 +13,6 @@ export default function genreReducer(state = initialState, action) {
         value: action.payload.value,
         label: action.payload.label,
       };
-
     default:
       return state;
   }
