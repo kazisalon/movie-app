@@ -24,13 +24,13 @@ export default function paginationReducer(state = initialState, action) {
     case FETCH_PAGE_COUNT:
       return {
         ...state,
-        pages: action.payload,
+        pages: action.payload.count,
       };
 
     case UPDATE_WINDOW_WIDTH:
       return {
         ...state,
-        windowWidth: action.payload,
+        windowWidth: action.payload.width,
       };
 
     default:

@@ -16,7 +16,6 @@ export default function moviesReducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        error: null,
       };
 
     case FETCH_MOVIES_SUCCESS:
@@ -31,7 +30,6 @@ export default function moviesReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload.error,
-        items: action.payload.movies,
       };
 
     default:

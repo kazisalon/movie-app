@@ -14,5 +14,5 @@ export const resetPageNumber = () => ({
 
 export const updateWindowWidth = width => ({
   type: UPDATE_WINDOW_WIDTH,
-  payload: width,
+  payload: { width },
 });

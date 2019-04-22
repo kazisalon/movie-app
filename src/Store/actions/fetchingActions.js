@@ -19,16 +19,8 @@ export const fetchMoviesFailure = error => ({
 
 export const fetchPageCount = count => ({
   type: FETCH_PAGE_COUNT,
-  payload: count,
+  payload: { count },
 });
-
-const handleErrors = (response) => {
-  if (!response.ok) {
-    // eslint-disable-next-line no-console
-    console.log(response.statusText);
-  }
-  return response;
-};
 
 const MOVIEDB_API_KEY = '5874acfd11651a28c55771624f7021f4';
 const MOVIEDB_BASE_URL = 'https://api.themoviedb.org/3';
@@ -50,42 +42,45 @@ export function fetchMovies(
   return async (dispatch) => {
     dispatch(fetchMoviesBegin());
     let response;
-    if (popularity && genreId) {
-      response = await fetch(
-        `${MOVIEDB_BASE_URL}/discover/movie?api_key=${MOVIEDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreId}`,
-      );
-    } else if (popularity) {
-      response = await fetch(
-        `${MOVIEDB_BASE_URL}/discover/movie?api_key=${MOVIEDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`,
-      );
-    } else if (ratings && genreId) {
-      response = await fetch(
-        `${MOVIEDB_BASE_URL}/discover/movie?sort_by=vote_average.desc&api_key=${MOVIEDB_API_KEY}&page=${page}&vote_count.gte=2200&with_genres=${genreId}`,
-      );
-    } else if (ratings) {
-      response = await fetch(
-        `${MOVIEDB_BASE_URL}/discover/movie?sort_by=vote_average.desc&api_key=${MOVIEDB_API_KEY}&page=${page}&vote_count.gte=2200`,
-      );
-    } else if (inputValue) {
-      response = await fetch(
-        `${MOVIEDB_BASE_URL}/search/movie?api_key=${MOVIEDB_API_KEY}&query=${inputValue}&page=${page}`,
-      );
-    } else if (genreId) {
-      response = await fetch(
-        `${MOVIEDB_BASE_URL}/discover/movie?api_key=${MOVIEDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreId}`,
-      );
-    } else {
-      response = await fetch(
-        `${MOVIEDB_BASE_URL}/movie/now_playing?api_key=${MOVIEDB_API_KEY}&page=${page}`,
-      );
+    try {
+      if (popularity && genreId) {
+        response = await fetch(
+          `${MOVIEDB_BASE_URL}/discover/movie?api_key=${MOVIEDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreId}`,
+        );
+      } else if (popularity) {
+        response = await fetch(
+          `${MOVIEDB_BASE_URL}/discover/movie?api_key=${MOVIEDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`,
+        );
+      } else if (ratings && genreId) {
+        response = await fetch(
+          `${MOVIEDB_BASE_URL}/discover/movie?sort_by=vote_average.desc&api_key=${MOVIEDB_API_KEY}&page=${page}&vote_count.gte=2200&with_genres=${genreId}`,
+        );
+      } else if (ratings) {
+        response = await fetch(
+          `${MOVIEDB_BASE_URL}/discover/movie?sort_by=vote_average.desc&api_key=${MOVIEDB_API_KEY}&page=${page}&vote_count.gte=2200`,
+        );
+      } else if (inputValue) {
+        response = await fetch(
+          `${MOVIEDB_BASE_URL}/search/movie?api_key=${MOVIEDB_API_KEY}&query=${inputValue}&page=${page}`,
+        );
+      } else if (genreId) {
+        response = await fetch(
+          `${MOVIEDB_BASE_URL}/discover/movie?api_key=${MOVIEDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreId}`,
+        );
+      } else {
+        response = await fetch(
+          `${MOVIEDB_BASE_URL}/movie/now_playing?api_key=${MOVIEDB_API_KEY}&page=${page}`,
+        );
+      }
+    } catch (e) {
+      dispatch(fetchMoviesFailure(' Failed to load!'));
+      return;
     }
-    const res = handleErrors(response);
-    const json = await res.json();
+    const json = await response.json();
     // eslint-disable-next-line prefer-destructuring
     const results = json.results;
     const pageCount = json.total_pages;
     dispatch(fetchPageCount(pageCount));
     dispatch(fetchMoviesSuccess(results));
-    return json.results;
   };
 }

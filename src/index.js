@@ -11,15 +11,12 @@ import './index.css';
 import App from './App';
 
 
-// kick off the polyfill!
-
-
 const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(thunk),
-    // window.__REDUX_DEVTOOLS_EXTENSION__
-    //   && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    window.__REDUX_DEVTOOLS_EXTENSION__
+      && window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),
 );
 

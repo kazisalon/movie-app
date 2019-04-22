@@ -115,3 +115,11 @@
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
 }
+
+
+
+@media screen and (max-width: 370px) {
+  .pagination > .break-me{ 
+    display: none !important; 
+    }
+}

@@ -22,3 +22,12 @@
   font-size: 30px;
   color: #646b7f;
 }
+
+.main-error {
+  padding-top: 25px;
+  text-align: center;
+  font-size: 30px;
+  color: #646b80;
+  background: #23252b;
+  height: 1300px;
+}

@@ -30,6 +30,11 @@ wasn't optimized for using plain css so I make this workaround  */
   opacity: 0.7 !important;
 }
 
+.react-select__placeholder{
+  color: #8e95a5 !important;
+  opacity: 0.8 !important;
+}
+
 .react-select__option:hover {
   background-color: #424754 !important;
   cursor: pointer !important;

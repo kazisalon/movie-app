@@ -11,18 +11,17 @@ class Main extends Component {
 
   render() {
     const { error, loading, items } = this.props;
-
     if (error) {
       return (
-        <div className="main-wrapper">
+        <div className="main-error">
           <div>
-            Error!
-            {error.message}
+              Error!
+            {error}
           </div>
-          ;
         </div>
       );
     }
+
 
     if (loading) {
       return (
@@ -42,7 +41,7 @@ class Main extends Component {
         rank={film.vote_average}
       />
     ));
-    
+
     return (
       <div className="main-wrapper">
         <ul className="movies-list">{films}</ul>
