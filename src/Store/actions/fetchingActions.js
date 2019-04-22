@@ -76,6 +76,7 @@ export function fetchMovies(
       dispatch(fetchMoviesFailure(' Failed to load!'));
       return;
     }
+    dispatch(fetchMoviesFailure(null));
     const json = await response.json();
     // eslint-disable-next-line prefer-destructuring
     const results = json.results;
