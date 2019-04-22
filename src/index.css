@@ -4,3 +4,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Roboto, Arial, Helvetica,
     sans-serif;
 }
+
+/* Only chrome, firefox is bugged */
+.selector:not(*:root), html{
+  scroll-behavior: smooth;
+}

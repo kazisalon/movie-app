@@ -43,7 +43,6 @@ class Pagination extends Component {
     const handleClick = (e) => {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
       });
       // e = custom event from ReactPaginate
       const countedNextPage = e.selected + 1;
