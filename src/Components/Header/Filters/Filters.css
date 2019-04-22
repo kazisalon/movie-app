@@ -233,19 +233,28 @@ wasn't optimized for using plain css so I make this workaround  */
 
 .filter-buttons {
   display: block;
-  border: none;
   margin: 0;
-  padding: 0;
   width: auto;
   overflow: visible;
   background: transparent;
-  color: inherit;
   font: inherit;
-  line-height: normal;
   outline: none;
-  text-align: inherit;
   height: 39px;
   margin-left: 15px;
+  transition: all 0.2s ease 0s;
+  padding: 0 10px;
+  border: 1px solid #424754;
+  color: #8e95a5;
+  line-height: 32px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+  text-align: start;
+}
+
+.checked {
+  color: #bbc6df;
+  border: 1px solid #8e95a5;
 }
 
 @media screen and (max-width: 570px) {
@@ -254,38 +263,12 @@ wasn't optimized for using plain css so I make this workaround  */
   }
 }
 
-.ratting-button {
-  transition: all 0.2s ease 0s;
-  padding: 0 10px;
-  border: 1px solid #424754;
-  background: 0 0;
-  color: #8e95a5;
-  line-height: 32px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 17px;
-  text-align: start;
-  min-width: 76px;
-}
 
 .ratting-button::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 
-.popularity-button {
-  transition: all 0.2s ease 0s;
-  padding: 0 10px;
-  border: 1px solid #424754;
-  background: 0 0;
-  color: #8e95a5;
-  line-height: 32px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 17px;
-  text-align: start;
-  min-width: 98px;
-}
 
 @media screen and (max-width: 425px) {
   .popularity-button {
@@ -297,3 +280,4 @@ wasn't optimized for using plain css so I make this workaround  */
   border: 0;
   padding: 0;
 }
+

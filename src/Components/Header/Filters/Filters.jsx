@@ -13,7 +13,7 @@ import { fetchMovieByInput } from '../../../Store/actions/inputActions';
 // eslint-disable-next-line react/prefer-stateless-function
 const Filters = (props) => {
   const {
-    sendSearchQuery, inputValue, moviesByPopularity, moviesByRating, genreId, setGenreValue,
+    sendSearchQuery, inputValue, moviesByPopularity, moviesByRating, genreId, setGenreValue, byRating, byPopularity,
   } = props;
 
   const genreOptions = [
@@ -40,13 +40,17 @@ const Filters = (props) => {
 
   const genre = genreOptions.find(o => o.value === genreId);
   // value, action = custom "events" from react-select library
-  const handleChange = (value, action) => {
+  const handleGenreChange = (value, action) => {
     if (action.action === 'clear') {
       setGenreValue();
     } else if (action.action === 'select-option') {
       setGenreValue(value);
     }
   };
+
+  // add "cheked" class if true in state
+  const isRating = byRating ? ' checked' : '';
+  const isPopularity = byPopularity ? ' checked' : '';
 
   return (
     <>
@@ -60,19 +64,19 @@ const Filters = (props) => {
             isLoading={false}
             isClearable
             name="Genre"
-            onChange={handleChange}
+            onChange={handleGenreChange}
             options={genreOptions}
             placeholder="Select genre..."
           />
           <button
-            className="filter-buttons ratting-button"
+            className={`filter-buttons ratting-button ${isRating}`}
             onClick={() => moviesByRating()}
             type="button"
           >
               Rating
           </button>
           <button
-            className="filter-buttons popularity-button"
+            className={`filter-buttons popularity-button ${isPopularity}`}
             onClick={() => moviesByPopularity()}
             type="button"
           >
@@ -113,6 +117,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   inputValue: state.inputReducers.inputValue,
   genreId: state.genreReducers.value,
+  byRating: state.filterReducers.byRating,
+  byPopularity: state.filterReducers.byPopularity,
 });
 
 export default connect(
