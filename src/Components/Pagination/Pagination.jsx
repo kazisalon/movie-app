@@ -74,7 +74,7 @@ class Pagination extends Component {
             nextLabel="next"
             breakLabel="..."
             breakClassName="break-me"
-            pageCount={pages}
+            pageCount={Math.min(pages, 1000)}
             marginPagesDisplayed={1}
             pageRangeDisplayed={choosePageRangeDisplayed()}
             onPageChange={e => handleClick(e)}
