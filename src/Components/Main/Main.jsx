@@ -43,9 +43,9 @@ class Main extends Component {
     ));
 
     return (
-      <div className="main-wrapper">
+      <main className="main-wrapper">
         <ul className="movies-list">{films}</ul>
-      </div>
+      </main>
     );
   }
 }

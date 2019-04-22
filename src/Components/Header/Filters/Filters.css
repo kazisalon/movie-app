@@ -3,6 +3,7 @@ wasn't optimized for using plain css so I make this workaround  */
 
 .react-select-container {
   height: 39px !important;
+  font-size: 17px !important;
 }
 
 .react-select__menu {

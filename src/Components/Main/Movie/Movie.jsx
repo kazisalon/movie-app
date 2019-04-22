@@ -18,10 +18,12 @@ const Movie = (props) => {
         href={`https://www.themoviedb.org/movie/${id}`}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Link to movie description on movieDB site"
       >
         <Img
           className="movie-poster"
           src={url}
+          alt={title}
           loader={(
             <Loader
               type="Triangle"
@@ -40,6 +42,7 @@ const Movie = (props) => {
             href={`https://www.themoviedb.org/movie/${id}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Link to movie description on movieDB site"
           >
             <span className="movie-title">{title}</span>
           </a>

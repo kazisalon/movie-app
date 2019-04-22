@@ -8,7 +8,7 @@ import { fetchMovieByInput } from '../../Store/actions/inputActions';
 const Header = (props) => {
   const { sendSearchQuery } = props;
   return (
-    <div className="header">
+    <header className="header">
       <button
         type="button"
         // clean input
@@ -22,7 +22,7 @@ const Header = (props) => {
       </button>
 
       <Filters />
-    </div>
+    </header>
   );
 };
 
