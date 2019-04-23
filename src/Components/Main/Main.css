@@ -1,4 +1,5 @@
 .main-wrapper {
+  display: block;
   height: 100%;
   background: #23252b;
   padding-top: 14px;
@@ -14,8 +15,11 @@
   height: 100%;
   padding-left: 15px;
   padding-right: 15px;
+  /* IE 11 fix */
   margin-top: 0px;
+  margin-bottom: 0px;
   padding-top: 17px;
+  padding-bottom: 20px;
   background: inherit;
 }
 
