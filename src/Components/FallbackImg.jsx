@@ -1,5 +1,5 @@
 import React from 'react';
-import fallback from '../FallbackImg.jpg';
+import fallback from '../img/FallbackImg.jpg';
 
 const FallbackImg = () => (
   <img src={fallback} className="movie-poster" alt="fallback" />

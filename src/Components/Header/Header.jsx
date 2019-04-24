@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import logo from '../../logo.svg';
+import logo from '../../img/logo.svg';
 import './Header.css';
 import Filters from './Filters/Filters';
-import { fetchMovieByInput } from '../../Store/actions/inputActions';
+import { fetchMovieByInput } from '../../Store/actions/filtersActions';
 
 const Header = (props) => {
   const { sendSearchQuery } = props;

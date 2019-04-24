@@ -2,12 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import './Filters.css';
-import { fetchMovieByGenre } from '../../../Store/actions/genreActions';
 import {
-  fetchMoviesByPopularity,
-  fetchMoviesByRating,
-} from '../../../Store/actions/filterActions';
-import { fetchMovieByInput } from '../../../Store/actions/inputActions';
+  fetchMovieByGenre, fetchMoviesByPopularity, fetchMoviesByRating, fetchMovieByInput,
+} from '../../../Store/actions/filtersActions';
 
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -44,7 +41,7 @@ const Filters = (props) => {
     if (action.action === 'clear') {
       setGenreValue();
     } else if (action.action === 'select-option') {
-      setGenreValue(value);
+      setGenreValue(value.value);
     }
   };
 
@@ -115,10 +112,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  inputValue: state.inputReducers.inputValue,
-  genreId: state.genreReducers.value,
-  byRating: state.filterReducers.byRating,
-  byPopularity: state.filterReducers.byPopularity,
+  inputValue: state.filters.inputValue,
+  genreId: state.filters.genreId,
+  byRating: state.filters.byRating,
+  byPopularity: state.filters.byPopularity,
 });
 
 export default connect(

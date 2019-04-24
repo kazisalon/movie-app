@@ -27,11 +27,11 @@ const MOVIEDB_BASE_URL = 'https://api.themoviedb.org/3';
 
 // I tried different approaches on how to organize this action, and I think this can the best way
 // of how to organize fetching(in this particular case).When we have all the logic in one place.
-// If we would have one action for every kind of fetching, it leads to the duplicating of code
+// If we would have one action for every kind of fetching, it would lead to duplicating of the code
 // and if you change something, you will be forced to change the logic in different places of
-// different components, because which fetching action we should call depends on a lot of factors
+// different components, because which fetching action we should call will depends on a lot of factors
 // like existing of text in input, state of "byPopularity", page and so on.
-// This approach can be wrong(and probably it is), just wanted to show my point.
+// This approach can be wrong(and probably, it is), just wanted to show my point.
 export function fetchMovies(
   inputValue,
   page = 1,

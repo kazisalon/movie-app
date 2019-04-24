@@ -102,13 +102,13 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  inputValue: state.inputReducers.inputValue,
-  pages: state.paginationReducers.pages,
-  currentPage: state.paginationReducers.currentPage,
-  windowWidth: state.paginationReducers.windowWidth,
-  genreId: state.genreReducers.value,
-  byRating: state.filterReducers.byRating,
-  byPopularity: state.filterReducers.byPopularity,
+  inputValue: state.filters.inputValue,
+  pages: state.movies.pages,
+  currentPage: state.movies.currentPage,
+  windowWidth: state.movies.windowWidth,
+  genreId: state.filters.genreId,
+  byRating: state.filters.byRating,
+  byPopularity: state.filters.byPopularity,
 });
 
 export default connect(

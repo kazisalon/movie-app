@@ -51,9 +51,9 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({
-  items: state.fetching.items,
-  loading: state.fetching.loading,
-  error: state.fetching.error,
+  items: state.movies.items,
+  loading: state.movies.loading,
+  error: state.movies.error,
 });
 
 const mapDispatchToProps = dispatch => ({
