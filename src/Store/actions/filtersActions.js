@@ -19,7 +19,7 @@ export const toggleRating = () => ({
   type: TOGGLE_RATINGS,
 });
 
-export const changeGenreValue = (value = { genreId: 0 }) => ({
+export const changeGenreValue = (value = 0) => ({
   type: CHANGE_GENRE_VALUE,
   payload: value,
 });
