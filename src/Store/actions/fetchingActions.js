@@ -27,10 +27,10 @@ const MOVIEDB_BASE_URL = 'https://api.themoviedb.org/3';
 
 // I tried different approaches on how to organize this action, and I think this can the best way
 // of how to organize fetching(in this particular case).When we have all the logic in one place.
-// If we would have one action for every kind of fetching, it would lead to duplicating of the code
-// and if you change something, you will be forced to change the logic in different places of
-// different components, because which fetching action we should call will depends on a lot of factors
-// like existing of text in input, state of "byPopularity", page and so on.
+// If we had one action for every kind of fetching, it would lead to duplication of the code
+// and if you change something, like adding more filters, you will be forced to change the logic in
+// different places of different components, to choose which fetching action we should call because it depends
+// on a lot of factors like existing of text in input, state of "byPopularity", page and so on.
 // This approach can be wrong(and probably, it is), just wanted to show my point.
 export function fetchMovies(
   inputValue,
@@ -53,11 +53,11 @@ export function fetchMovies(
         );
       } else if (ratings && genreId) {
         response = await fetch(
-          `${MOVIEDB_BASE_URL}/discover/movie?sort_by=vote_average.desc&api_key=${MOVIEDB_API_KEY}&page=${page}&vote_count.gte=2200&with_genres=${genreId}`,
+          `${MOVIEDB_BASE_URL}/discover/movie?sort_by=vote_average.desc&api_key=${MOVIEDB_API_KEY}&region=US&page=${page}&vote_count.gte=500&with_genres=${genreId}`,
         );
       } else if (ratings) {
         response = await fetch(
-          `${MOVIEDB_BASE_URL}/discover/movie?sort_by=vote_average.desc&api_key=${MOVIEDB_API_KEY}&page=${page}&vote_count.gte=2200`,
+          `${MOVIEDB_BASE_URL}/discover/movie?sort_by=vote_average.desc&api_key=${MOVIEDB_API_KEY}&region=US&page=${page}&vote_count.gte=500`,
         );
       } else if (inputValue) {
         response = await fetch(

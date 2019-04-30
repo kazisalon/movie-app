@@ -66,25 +66,23 @@ class Pagination extends Component {
       return 1;
     };
     return (
-      <React.Fragment>
-        <div className="pagination-wrapper">
-          <ReactPaginate
-            previousLabel="previous"
-            pageClassName="page"
-            nextLabel="next"
-            breakLabel="..."
-            breakClassName="break-me"
-            pageCount={Math.min(pages, 1000)}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={choosePageRangeDisplayed()}
-            onPageChange={e => handleClick(e)}
-            containerClassName="pagination"
-            subContainerClassName="pages pagination"
-            activeClassName="active"
-            forcePage={currentPage - 1}
-          />
-        </div>
-      </React.Fragment>
+      <div className="pagination-wrapper">
+        <ReactPaginate
+          previousLabel="previous"
+          pageClassName="page"
+          nextLabel="next"
+          breakLabel="..."
+          breakClassName="break-me"
+          pageCount={Math.min(pages, 1000)}
+          marginPagesDisplayed={1}
+          pageRangeDisplayed={choosePageRangeDisplayed()}
+          onPageChange={e => handleClick(e)}
+          containerClassName="pagination"
+          subContainerClassName="pages pagination"
+          activeClassName="active"
+          forcePage={currentPage - 1}
+        />
+      </div>
     );
   }
 }
