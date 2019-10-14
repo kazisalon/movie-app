@@ -23,7 +23,6 @@ const Header = props => {
       <HeaderLogoWrapper>
         <HeaderLogoButton
           type="button"
-          // clear input
           onClick={() => {
             changeInputValue('');
           }}
