@@ -1,19 +1,24 @@
+// Core
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import configureStore from './Store/store';
+// Helpers
+import configureStore from './helpers/configureStore';
+// IE 11 polyfills
 import 'ie-array-find-polyfill';
 import 'promise-polyfill/src/polyfill';
 import 'whatwg-fetch';
-import './index.css';
+// Styles
+import GlobalStyle from './styles';
+// Components
 import App from './App';
-
 
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
+    <GlobalStyle />
   </Provider>,
   document.getElementById('root'),
 );

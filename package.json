@@ -4,20 +4,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "gh-pages": "^2.0.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-regular-svg-icons": "^5.11.2",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.6",
+    "axios": "^0.19.0",
+    "gh-pages": "^2.1.1",
     "ie-array-find-polyfill": "^1.1.0",
     "promise-polyfill": "^8.1.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-image": "^2.1.1",
-    "react-loader-spinner": "^2.3.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-image": "^2.2.0",
+    "react-loader-spinner": "2.3.0",
     "react-paginate": "^6.3.0",
-    "react-redux": "^7.0.2",
-    "react-scripts": "2.1.8",
-    "react-select": "^2.4.3",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
+    "react-redux": "^7.1.1",
+    "react-scripts": "3.2.0",
+    "react-select": "^3.0.8",
+    "redux": "^4.0.4",
+    "redux-saga": "^1.1.1",
     "smoothscroll-polyfill": "^0.4.4",
+    "styled-components": "^4.4.0",
     "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
@@ -37,6 +43,12 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-config-airbnb": "^17.1.0"
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.2"
   }
 }
