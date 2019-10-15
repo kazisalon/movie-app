@@ -23,7 +23,7 @@ export const MoviesList = styled.ul`
 
 export const LoadingMessage = styled.h2`
   display: inline-block;
-  margin: 25px 0 0 0;
+  margin: 35px 0 0 0;
   text-align: center;
   font-size: 30px;
   font-weight: 400;

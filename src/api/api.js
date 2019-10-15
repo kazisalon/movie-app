@@ -28,7 +28,7 @@ const getMoviesByInput = async (inputValue, currentPage) =>
       1}`,
   );
 
-const fetchNowPlayingMovies = async currentPage =>
+const getNowPlayingMovies = async currentPage =>
   await axios.get(
     `${MOVIEDB_BASE_URL}/movie/now_playing?api_key=${MOVIEDB_API_KEY}&language=en-US&page=${currentPage ||
       1}`,
@@ -49,7 +49,7 @@ export const api = {
   getMoviesByRating,
   getMoviesByInput,
   getMoviesByGenre,
-  fetchNowPlayingMovies,
+  getNowPlayingMovies,
   getGenres,
   getMovieDetails,
 };

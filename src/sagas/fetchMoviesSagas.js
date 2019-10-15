@@ -22,14 +22,14 @@ function* requestMovies(apiMethod, args = [], preventPageReset = false) {
 }
 
 function* fetchNowPlayingMovies() {
-  yield requestMovies(api.fetchNowPlayingMovies);
+  yield requestMovies(api.getNowPlayingMovies);
 }
 
 function* fetchByInputChange({ payload: inputValue }) {
   if (inputValue.length >= 1) {
     yield requestMovies(api.getMoviesByInput, [inputValue]);
   } else {
-    yield requestMovies(api.fetchNowPlayingMovies);
+    yield requestMovies(api.getNowPlayingMovies);
   }
 }
 
@@ -41,7 +41,7 @@ function* fetchByTogglePopularity() {
   } else if (genreId) {
     yield requestMovies(api.getMoviesByGenre, [genreId]);
   } else {
-    yield requestMovies(api.fetchNowPlayingMovies);
+    yield requestMovies(api.getNowPlayingMovies);
   }
 }
 
@@ -53,7 +53,7 @@ function* fetchByToggleRating() {
   } else if (genreId) {
     yield requestMovies(api.getMoviesByGenre, [genreId]);
   } else {
-    yield requestMovies(api.fetchNowPlayingMovies);
+    yield requestMovies(api.getNowPlayingMovies);
   }
 }
 
@@ -61,7 +61,7 @@ function* fetchByGenreChange({ payload: genreId }) {
   if (genreId !== 0) {
     yield requestMovies(api.getMoviesByGenre, [genreId]);
   } else {
-    yield requestMovies(api.fetchNowPlayingMovies);
+    yield requestMovies(api.getNowPlayingMovies);
   }
 }
 
@@ -77,7 +77,7 @@ function* fetchByChangePage({ payload: nextPage }) {
   } else if (genreId) {
     yield requestMovies(api.getMoviesByGenre, [genreId, nextPage], true);
   } else {
-    yield requestMovies(api.fetchNowPlayingMovies, [nextPage], true);
+    yield requestMovies(api.getNowPlayingMovies, [nextPage], true);
   }
 }
 
