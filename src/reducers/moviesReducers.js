@@ -1,7 +1,7 @@
 import * as types from '../helpers/types';
 
 const moviesInitialState = {
-  items: [],
+  movies: [],
   loading: false,
   error: null,
 };
@@ -18,7 +18,7 @@ export const movies = (state = moviesInitialState, action) => {
       return {
         ...state,
         error: null,
-        items: action.payload,
+        movies: action.payload,
         loading: false,
       };
 
@@ -45,7 +45,6 @@ export const movieDetails = (state = movieDetailsinitialState, action) => {
     case types.FETCH_MOVIE_DETAILS:
       return {
         ...state,
-        details: {},
         loading: true,
       };
 

@@ -12,19 +12,18 @@ import {
   HeaderText,
 } from './styles';
 // Actions
-import { changeInputValue } from '../../actions/filtersActions';
+import { resetFilters } from '../../actions/filtersActions';
 // Components
 import Filters from './Filters';
 
-const Header = props => {
-  const { changeInputValue } = props;
+const Header = React.memo(({ resetFilters }) => {
   return (
     <HeaderWrapper>
       <HeaderLogoWrapper>
         <HeaderLogoButton
           type="button"
           onClick={() => {
-            changeInputValue('');
+            resetFilters();
           }}
         >
           <HeaderLogo src={logo} alt="logo" />
@@ -35,9 +34,9 @@ const Header = props => {
       <Filters />
     </HeaderWrapper>
   );
-};
+});
 
 export default connect(
   null,
-  { changeInputValue },
+  { resetFilters },
 )(Header);

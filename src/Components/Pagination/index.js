@@ -8,8 +8,7 @@ import { changePage } from '../../actions/paginationActions';
 // Styles
 import { PaginationWrapper } from './styles';
 
-const Pagination = props => {
-  const { pages, currentPage, changePage } = props;
+const Pagination = ({ pages, currentPage, changePage }) => {
   const [windowWidth, setWindowSize] = useState(window.innerWidth);
 
   useEffect(() => {

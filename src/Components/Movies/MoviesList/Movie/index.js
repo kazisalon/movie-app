@@ -18,17 +18,16 @@ import {
   StyledFontAwesomeIcon,
 } from './styles';
 // Img
-import FallbackImg from '../../../img/FallbackImg/FallbackImg';
+import FallbackImg from '../../../../img/FallbackImg/FallbackImg';
 
-const Movie = props => {
-  const { poster, id, title, rank, overview, toggleModal } = props;
+const Movie = React.memo(({ poster, id, title, rank, overview, hangleOpenModal }) => {
   const posterUrl = poster
     ? `https://image.tmdb.org/t/p/w200/${poster}`
     : 'https://image.tmdb.org/t/p/w200/xPu5camdNW7ga5QeHGJhiMbQ62B.jpg';
 
   return (
     <MovieWrapper>
-      <MoviePosterWrapper onClick={() => toggleModal(id)}>
+      <MoviePosterWrapper onClick={() => hangleOpenModal(id)}>
         {/* <img className="movie-poster" src={posterUrl} alt={title}/> */}
         <Img
           className="movie-poster"
@@ -47,7 +46,7 @@ const Movie = props => {
       </MoviePosterWrapper>
 
       <MovieInfo>
-        <MovieTitleWrapper onClick={() => toggleModal(id)}>
+        <MovieTitleWrapper onClick={() => hangleOpenModal(id)}>
           <MovieTitle>{title}</MovieTitle>
 
           <MovieRank>
@@ -60,6 +59,6 @@ const Movie = props => {
       </MovieInfo>
     </MovieWrapper>
   );
-};
+});
 
 export default Movie;

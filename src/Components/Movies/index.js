@@ -1,20 +1,26 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { connect } from 'react-redux';
 // Action creators
-import { fetchNowPlayingMovies, fetchGenres } from '../../actions/fetchingActions';
-import { fetchMovieDetails } from '../../actions/fetchingActions';
+import {
+  fetchNowPlayingMovies,
+  fetchGenres,
+  fetchMovieDetails,
+} from '../../actions/fetchingActions';
 // Styles
-import { MoviesWrapper, MoviesList, LoadingMessage, LoadingError } from './styles';
+import { MoviesWrapper } from './styles';
 // Components
-import Movie from './Movie';
+import MoviesList from './MoviesList';
 import MovieDetailsModal from './MovieDetailsModal';
 
 const Movies = props => {
   const {
-    error,
-    loading,
     movies,
+    moviesLoading,
+    moviesError,
+    movieDetails,
+    movieDetailsLoading,
+    movieDetailsError,
     fetchNowPlayingMovies,
     fetchGenres,
     fetchMovieDetails,
@@ -25,45 +31,48 @@ const Movies = props => {
   useEffect(() => {
     fetchNowPlayingMovies();
     fetchGenres();
-  }, [fetchGenres, fetchNowPlayingMovies]);
+  }, [fetchNowPlayingMovies, fetchGenres]);
 
-  const handleToggleModal = id => {
-    fetchMovieDetails(id);
-    toggleModal(true);
-  };
+  const hangleOpenModal = useCallback(
+    id => {
+      fetchMovieDetails(id);
+      toggleModal(true);
+    },
+    [fetchMovieDetails],
+  );
+
+  const formatedMovieDetailsGenres = useMemo(
+    () => (movieDetails.genres ? movieDetails.genres.map(genre => genre.name) : []),
+    [movieDetails.genres],
+  );
 
   return (
     <MoviesWrapper>
-      {loading ? (
-        <LoadingMessage>Loading...</LoadingMessage>
-      ) : error ? (
-        <LoadingError>{`Error! ${error}`}</LoadingError>
-      ) : (
-        <>
-          <MoviesList>
-            {movies.map(movie => (
-              <Movie
-                key={movie.id}
-                id={movie.id}
-                title={movie.title}
-                overview={movie.overview}
-                poster={movie.poster_path}
-                rank={movie.vote_average}
-                toggleModal={handleToggleModal}
-              />
-            ))}
-          </MoviesList>
-          <MovieDetailsModal isModalOpen={isModalOpen} toggleModal={toggleModal} />
-        </>
-      )}
+      <MoviesList
+        movies={movies}
+        moviesLoading={moviesLoading}
+        moviesError={moviesError}
+        hangleOpenModal={hangleOpenModal}
+      />
+      <MovieDetailsModal
+        isModalOpen={isModalOpen}
+        toggleModal={toggleModal}
+        movieGenres={formatedMovieDetailsGenres}
+        details={movieDetails}
+        loading={movieDetailsLoading}
+        error={movieDetailsError}
+      />
     </MoviesWrapper>
   );
 };
 
 const mapStateToProps = state => ({
-  movies: state.movies.items,
-  loading: state.movies.loading,
-  error: state.movies.error,
+  movies: state.movies.movies,
+  moviesLoading: state.movies.loading,
+  moviesError: state.movies.error,
+  movieDetails: state.movieDetails.details,
+  movieDetailsLoading: state.movieDetails.loading,
+  movieDetailsError: state.movieDetails.error,
 });
 
 export default connect(

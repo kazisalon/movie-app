@@ -39,6 +39,14 @@ export const filters = (state = filtersInitialState, action) => {
         byRating: false,
         byPopularity: false,
       };
+    case types.RESET_FILTERS:
+      return {
+        ...state,
+        inputValue: '',
+        genreId: 0,
+        byRating: false,
+        byPopularity: false,
+      };
     default:
       return state;
   }

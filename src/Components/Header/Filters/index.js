@@ -1,9 +1,11 @@
 // Core
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 // Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+// Helpers
+import useDebounce from '../../../helpers/useDebounce';
 // Actions
 import {
   changeGenreValue,
@@ -11,6 +13,7 @@ import {
   toggleRating,
   changeInputValue,
 } from '../../../actions/filtersActions';
+import { fetchNowPlayingMovies } from '../../../actions/fetchingActions';
 // Styles
 import {
   StyledReactSelect,
@@ -26,7 +29,7 @@ import {
 const Filters = props => {
   const {
     changeInputValue,
-    inputValue,
+    fetchNowPlayingMovies,
     togglePopularity,
     toggleRating,
     genreId,
@@ -34,13 +37,31 @@ const Filters = props => {
     changeGenreValue,
     byRating,
     byPopularity,
+    inputValue,
   } = props;
 
-  const genresFormatedForSelect = genres.map(genre => ({
-    value: genre.id,
-    label: genre.name,
-  }));
-  let chosenGenre = genresFormatedForSelect.find(genre => genre.value === genreId);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      changeInputValue(debouncedSearchTerm);
+    }
+  }, [debouncedSearchTerm, changeInputValue]);
+
+  useEffect(() => {
+    if (!inputValue) {
+      setSearchTerm('');
+    }
+  }, [inputValue]);
+
+  const handleInputChange = inputText => {
+    setSearchTerm(inputText);
+    if (!inputText) {
+      fetchNowPlayingMovies();
+    }
+  };
 
   // value, action = custom "events" from react-select library
   const handleGenreChange = (value, action) => {
@@ -51,48 +72,52 @@ const Filters = props => {
     }
   };
 
-  return (
-    <>
-      <FiltersContainer>
-        <FilterButtonsContainer>
-          <StyledReactSelect
-            className="react-select-container"
-            classNamePrefix="react-select"
-            value={chosenGenre || null}
-            isDisabled={false}
-            isLoading={false}
-            isClearable
-            name="Genre"
-            onChange={handleGenreChange}
-            options={genresFormatedForSelect}
-            placeholder="Select genre..."
-          />
-          <RattingButton checked={byRating} onClick={() => toggleRating()} type="button">
-            Rating
-          </RattingButton>
-          <PopularityButton
-            checked={byPopularity}
-            onClick={() => togglePopularity()}
-            type="button"
-          >
-            Popularity
-          </PopularityButton>
-        </FilterButtonsContainer>
+  const genresFormatedForSelect = genres.map(genre => ({
+    value: genre.id,
+    label: genre.name,
+  }));
+  const chosenGenre = genresFormatedForSelect.find(genre => genre.value === genreId);
 
-        <SearchForm onSubmit={e => e.preventDefault()}>
-          <SearchInput
-            placeholder="Search films..."
-            value={inputValue}
-            onFocus={e => (e.target.placeholder = '')}
-            onBlur={e => (e.target.placeholder = 'Search films...')}
-            onChange={e => changeInputValue(e.target.value)}
-          />
-          <SearchButton type="submit">
-            <FontAwesomeIcon icon={faSearch} />
-          </SearchButton>
-        </SearchForm>
-      </FiltersContainer>
-    </>
+  return (
+    <FiltersContainer>
+      <FilterButtonsContainer>
+        <StyledReactSelect
+          className="react-select-container"
+          classNamePrefix="react-select"
+          value={chosenGenre || null}
+          isDisabled={false}
+          isLoading={false}
+          isClearable
+          name="Genre"
+          onChange={handleGenreChange}
+          options={genresFormatedForSelect}
+          placeholder="Select genre..."
+        />
+        <RattingButton checked={byRating} onClick={() => toggleRating()} type="button">
+          Rating
+        </RattingButton>
+        <PopularityButton
+          checked={byPopularity}
+          onClick={() => togglePopularity()}
+          type="button"
+        >
+          Popularity
+        </PopularityButton>
+      </FilterButtonsContainer>
+
+      <SearchForm onSubmit={e => e.preventDefault()}>
+        <SearchInput
+          placeholder="Search films..."
+          value={searchTerm}
+          onFocus={e => (e.target.placeholder = '')}
+          onBlur={e => (e.target.placeholder = 'Search films...')}
+          onChange={e => handleInputChange(e.target.value)}
+        />
+        <SearchButton type="submit">
+          <FontAwesomeIcon icon={faSearch} />
+        </SearchButton>
+      </SearchForm>
+    </FiltersContainer>
   );
 };
 
@@ -101,6 +126,7 @@ const mapDispatchToProps = {
   changeGenreValue,
   togglePopularity,
   toggleRating,
+  fetchNowPlayingMovies,
 };
 
 const mapStateToProps = state => ({

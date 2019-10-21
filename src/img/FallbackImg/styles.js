@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MovieWrapper } from '../../Components/Movies/Movie/styles';
+import { MovieWrapper } from '../../Components/Movies/MoviesList/Movie/styles';
 
 const StyledFallbackImg = styled.img`
   border-radius: 7px;

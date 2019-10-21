@@ -9,7 +9,6 @@
   ],
   "plugins": ["jsx-a11y"],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "max-line-length": [true, { "limit": 90 }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

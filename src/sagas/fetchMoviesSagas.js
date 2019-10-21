@@ -26,11 +26,7 @@ function* fetchNowPlayingMovies() {
 }
 
 function* fetchByInputChange({ payload: inputValue }) {
-  if (inputValue.length >= 1) {
-    yield requestMovies(api.getMoviesByInput, [inputValue]);
-  } else {
-    yield requestMovies(api.getNowPlayingMovies);
-  }
+  if (inputValue) yield requestMovies(api.getMoviesByInput, [inputValue]);
 }
 
 function* fetchByTogglePopularity() {
@@ -100,6 +96,7 @@ export default function* watchFetchMovies() {
     takeLatest(types.TOGGLE_POPULARITY, fetchByTogglePopularity),
     takeLatest(types.TOGGLE_RATING, fetchByToggleRating),
     takeLatest(types.CHANGE_PAGE, fetchByChangePage),
+    takeLatest(types.RESET_FILTERS, fetchNowPlayingMovies),
     takeLatest(types.FETCH_NOW_PLAYING_MOVIES, fetchNowPlayingMovies),
     takeLatest(types.FETCH_MOVIE_DETAILS, fetchMovieDetails),
   ]);

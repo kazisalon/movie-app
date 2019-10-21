@@ -17,3 +17,7 @@ export const changeInputValue = (inputValue = '') => ({
   type: types.CHANGE_INPUT_VALUE,
   payload: inputValue,
 });
+
+export const resetFilters = () => ({
+  type: types.RESET_FILTERS,
+});
