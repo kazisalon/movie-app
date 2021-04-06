@@ -27,7 +27,7 @@ const Header = React.memo(({ resetFilters }) => {
           }}
         >
           <HeaderLogo src={logo} alt="logo" />
-          <HeaderText>Movies App</HeaderText>
+          <HeaderText>Hamro Movie</HeaderText>
         </HeaderLogoButton>
       </HeaderLogoWrapper>
 
